@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- paddings -->
+    <dimen name="base_padding">8dp</dimen>
+    <dimen name="addition_padding">20dp</dimen>
+    <!-- margins -->
+    <dimen name="base_margin">8dp</dimen>
+    <dimen name="addition_margin">20dp</dimen>
+
+    <!-- text sizes -->
+    <dimen name="base_text_size">16sp</dimen>
+    <dimen name="addition_text_size">20sp</dimen>
+
+</resources>

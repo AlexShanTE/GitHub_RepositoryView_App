@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/authFragment">
+
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="com.shante.githubrepositoryviewapp.presentation.auth.AuthFragment"
+        android:label="AuthFragment"
+        tools:layout="@layout/auth_fragment">
+        <action
+            android:id="@+id/to_repositoriesListFragment"
+            app:destination="@id/repositoriesListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/repositoriesListFragment"
+        android:name="com.shante.githubrepositoryviewapp.presentation.repositorieslist.RepositoriesListFragment"
+        android:label="RepositoriesListFragment"
+        tools:layout="@layout/repositories_list_fragment">
+        <action
+            android:id="@+id/to_detailInfoFragment"
+            app:destination="@id/detailInfoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailInfoFragment"
+        android:name="com.shante.githubrepositoryviewapp.presentation.detailinfo.DetailInfoFragment"
+        android:label="DetailInfoFragment" />
+</navigation>

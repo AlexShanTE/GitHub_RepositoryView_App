@@ -14,4 +14,10 @@ interface AppRepository {
 
     suspend fun signIn(token: String): UserInfo
 
+    fun saveTokenInSharedPreferences(token: String)
+
+    fun getTokenFromSharedPreferences() : String?
+
+    fun removeTokenFromSharedPreferences()
+
 }
