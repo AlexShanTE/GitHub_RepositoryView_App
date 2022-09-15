@@ -1,9 +1,16 @@
 package com.shante.githubrepositoryviewapp.presentation.detailinfo
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.shante.githubrepositoryviewapp.domain.models.Repo
+import com.shante.githubrepositoryviewapp.domain.repository.AppRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class RepositoryInfoViewModel {
+@HiltViewModel
+class RepositoryInfoViewModel @Inject constructor(
+    private val repository: AppRepository
+) : ViewModel() {
 
     val state: LiveData<State> = TODO()
 
