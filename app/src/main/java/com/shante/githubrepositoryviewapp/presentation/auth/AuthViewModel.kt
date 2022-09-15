@@ -42,7 +42,7 @@ class AuthViewModel @Inject constructor(
             _state.value = State.Loading
             try {
                 val user = repository.signIn(token.value.toString()) //todo user??
-                repository.saveTokenInSharedPreferences(token.toString())
+                repository.saveTokenInSharedPreferences(token.value.toString())
                 _actions.send(Action.RouteToMain)
             } catch (error: Throwable) {
                 error.printStackTrace()
@@ -56,7 +56,6 @@ class AuthViewModel @Inject constructor(
     }
 
     fun setToken(token: String) {
-        Log.d("TAG",token)
         _token.value = token
     }
 
