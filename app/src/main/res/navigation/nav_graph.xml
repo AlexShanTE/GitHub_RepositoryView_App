@@ -29,5 +29,11 @@
     <fragment
         android:id="@+id/detailInfoFragment"
         android:name="com.shante.githubrepositoryviewapp.presentation.detailinfo.DetailInfoFragment"
-        android:label="DetailInfoFragment" />
+        android:label="DetailInfoFragment"
+        tools:layout="@layout/repository_details">
+        <argument
+            android:name="repositoryId"
+            app:argType="integer" />
+    </fragment>
+
 </navigation>
