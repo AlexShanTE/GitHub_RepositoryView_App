@@ -3,6 +3,14 @@
     <string name="sign_in">SIGN IN</string>
     <string name="token">GitHub token</string>
 
+    <!-- State title -->
+
+
     <!-- content description -->
-    <string name="github_logo">gitHubLogo</string>
+    <string name="github_logo">GitHub Logo</string>
+    <string name="status_image">Status image</string>
+    <string name="error">Error</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="empty">Empty</string>
+    <string name="no_repositories">No repositories at the moment</string>
 </resources>

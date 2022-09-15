@@ -10,7 +10,7 @@ import retrofit2.http.Path
 interface RestGitHubApi {
 
     @GET("user/repos")
-    suspend fun getRepositories(): List<Repo>
+    suspend fun getRepositories(@Header("Authorization") token: String): List<Repo>
 
     @GET("repositories/{repoId}")
     suspend fun getRepository(@Path("repoId") repoId: String): RepoDetails
