@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/repository_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoLink="web"
+        android:drawablePadding="@dimen/base_padding"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:textSize="@dimen/base_text_size"
+        app:drawableStartCompat="@drawable/ic_link"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="https://github.com/AlexShanTE/GitHub_RepositoryView_App" />
+
+    <TextView
+        android:id="@+id/license"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/license"
+        android:textSize="@dimen/base_text_size"
+        app:drawableStartCompat="@drawable/ic_license"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/repository_link" />
+
+    <TextView
+        android:id="@+id/license_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/base_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/repository_link"
+        tools:text="Apache-2.0" />
+
+    <!--color of text sets in string-->
+    <TextView
+        android:id="@+id/stars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/stars"
+        android:textSize="@dimen/addition_text_size"
+        app:drawableStartCompat="@drawable/ic_star"
+        app:layout_constraintEnd_toStartOf="@id/forks"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/license" />
+    <!--color of text sets in string-->
+    <TextView
+        android:id="@+id/forks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/forks"
+        android:textSize="@dimen/addition_text_size"
+        app:drawableStartCompat="@drawable/ic_fork"
+        app:layout_constraintEnd_toStartOf="@id/watchers"
+        app:layout_constraintStart_toEndOf="@id/stars"
+        app:layout_constraintTop_toBottomOf="@id/license" />
+    <!--color of text sets in string-->
+    <TextView
+        android:id="@+id/watchers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/forks"
+        android:textSize="@dimen/addition_text_size"
+        app:drawableStartCompat="@drawable/ic_watcher"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/forks"
+        app:layout_constraintTop_toBottomOf="@id/license" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/stars">
+
+        <TextView
+            android:id="@+id/readMe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="@tools:sample/lorem/random" />
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

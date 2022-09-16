@@ -17,6 +17,10 @@ data class RepoDetails(
     val stars: Int,
     @SerializedName("watchers_count")
     val watchers: Int,
-    @SerializedName("readme")
-    val readme: String
+)
+
+@Serializable
+data class ReadMe(
+    @SerializedName("content")
+    val content:String
 )

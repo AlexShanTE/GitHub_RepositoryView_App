@@ -58,7 +58,7 @@ class RepositoriesListFragment : Fragment() {
     private fun handleAction(action: RepositoriesListViewModel.Action) {
         when (action) {
             is RepositoriesListViewModel.Action.RouteToDetails -> {
-                val direction = RepositoriesListFragmentDirections.toDetailInfoFragment(action.repositoryId)
+                val direction = RepositoriesListFragmentDirections.toDetailInfoFragment(action.repository)
                 findNavController().navigate(direction)
             }
             is RepositoriesListViewModel.Action.ShowError -> showToast(action.message)

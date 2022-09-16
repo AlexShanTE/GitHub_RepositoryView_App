@@ -13,4 +13,11 @@
     <string name="something_went_wrong">Something went wrong</string>
     <string name="empty">Empty</string>
     <string name="no_repositories">No repositories at the moment</string>
+
+    <string name="stars"><font color="#FF0707">%1$d </font><font color="#FF0707">stars</font></string>
+    <string name="forks"><font color="#FF0707">%1$d </font><font color="#0B132B">forks</font></string>
+    <string name="watchers"><font color="#FF0707">%1$d </font><font color="#0B132B">watchers</font></string>
+    <string name="license">License</string>
+
+
 </resources>
