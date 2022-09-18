@@ -56,7 +56,6 @@ class RepositoryInfoViewModel @Inject constructor(
     sealed interface State {
         object Loading : State
         data class Error(val error: String) : State
-
         data class Loaded(
             val githubRepoDetails: RepoDetails  //todo was val githubRepo: Repo, val readmeState:ReadmeState
         ) : State

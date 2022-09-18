@@ -10,7 +10,7 @@ data class RepoDetails(
     @SerializedName("html_url")
     val html_url: String,
     @SerializedName("license")
-    val license : String?,
+    val license : License?,
     @SerializedName("forks_count")
     val forks: Int,
     @SerializedName("stargazers_count")
@@ -23,4 +23,13 @@ data class RepoDetails(
 data class ReadMe(
     @SerializedName("content")
     val content:String
+)
+
+@Serializable
+data class License(
+    val key : String,
+    val name: String,
+    val spdx_id: String,
+    val url: String,
+    val node_id : String
 )

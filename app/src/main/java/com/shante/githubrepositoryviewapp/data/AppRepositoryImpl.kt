@@ -1,8 +1,6 @@
 package com.shante.githubrepositoryviewapp.data
 
-import android.app.Application
 import android.content.Context
-import android.util.Log
 import androidx.core.content.edit
 import com.shante.githubrepositoryviewapp.domain.models.KeyValueStorage
 import com.shante.githubrepositoryviewapp.domain.models.ReadMe
@@ -13,14 +11,13 @@ import com.shante.githubrepositoryviewapp.domain.repository.AppRepository
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import javax.inject.Inject
 
-class AppRepositoryImpl @Inject constructor(
+class AppRepositoryImpl (
     private val gitApi: RestGitHubApi,
-    application: Application
+    context: Context
 ) : AppRepository {
 
-    private val prefs = application.getSharedPreferences("token", Context.MODE_PRIVATE)
+    private val prefs = context.getSharedPreferences("token", Context.MODE_PRIVATE)
 
     override suspend fun getRepositories(): List<Repo> {
         val token: String? = getTokenFromSharedPreferences()

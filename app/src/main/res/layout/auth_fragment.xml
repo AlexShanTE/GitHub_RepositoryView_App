@@ -1,59 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center_vertical"
-    android:baselineAligned="false"
-    android:orientation="vertical"
-    android:weightSum="100">
+    android:background="@color/bg"
+    android:paddingHorizontal="@dimen/padding16"
+    android:paddingVertical="@dimen/padding24">
 
     <ImageView
         android:id="@+id/gitHubLogo"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="70"
-        android:src="@drawable/ic_github_logo"
         android:contentDescription="@string/github_logo"
+        android:src="@drawable/ic_git_hub_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/token_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="84dp"
+        android:text="@string/personal_access_token"
+        android:textColor="@color/secondary"
+        android:textSize="@dimen/text_size12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gitHubLogo"
+        android:visibility="visible"
         />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/tokenEditText"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:autofillHints="token"
+        android:ellipsize="end"
+        android:hint="@string/token"
+        android:inputType="text"
+        android:textColor="@color/white"
+        android:textColorHint="@color/lite_gray"
+        android:textSize="@dimen/text_size16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/token_label" />
 
-        <EditText
-            android:id="@+id/tokenEditText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ellipsize="end"
-            android:textSize="@dimen/base_text_size"
-            android:hint="@string/token"
-            android:autofillHints="token"
-            android:inputType="text"
-            />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/clearEditText_button"
-            style="@style/Widget.AppTheme.Button.IconOnly"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:icon="@drawable/ic_clear_edit_text" />
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/invalid_token"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/invalid_token"
+        android:textColor="@color/error"
+        android:textSize="@dimen/text_size12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tokenEditText"
+        android:visibility="gone"
+        tools:visibility="visible"
+        />
 
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signIn_Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
         android:layout_marginHorizontal="40dp"
+        android:backgroundTint="@color/accent"
         android:text="@string/sign_in"
-        android:textSize="@dimen/base_text_size" />
+        android:textSize="@dimen/text_size14"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</LinearLayout>
+    <ProgressBar
+        android:id="@+id/progress_circular_bar"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:indeterminate="true"
+        android:elevation="8dp"
+        android:indeterminateTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/signIn_Button"
+        app:layout_constraintEnd_toEndOf="@id/signIn_Button"
+        app:layout_constraintStart_toStartOf="@id/signIn_Button"
+        app:layout_constraintTop_toTopOf="@id/signIn_Button"
+        android:visibility="gone"
+        tools:visibility="visible"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

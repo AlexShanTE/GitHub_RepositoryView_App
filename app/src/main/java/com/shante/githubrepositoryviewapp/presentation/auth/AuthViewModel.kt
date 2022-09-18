@@ -41,16 +41,15 @@ class AuthViewModel @Inject constructor(
         viewModelScope.launch {
             _state.value = State.Loading
             try {
-                val user = repository.signIn(token.value.toString()) //todo user??
+                repository.signIn(token.value.toString())
                 repository.saveTokenInSharedPreferences(token.value.toString())
+                _state.value = State.Idle
                 _actions.send(Action.RouteToMain)
             } catch (error: Throwable) {
                 error.printStackTrace()
                 val message = error.message ?: error.toString()
                 _state.value = State.InvalidInput(message)
                 _actions.send(Action.ShowError(message))
-            } finally {
-                _state.value = State.Idle
             }
         }
     }

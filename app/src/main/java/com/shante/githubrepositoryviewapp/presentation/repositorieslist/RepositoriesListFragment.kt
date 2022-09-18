@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.shante.githubrepositoryviewapp.R
 import com.shante.githubrepositoryviewapp.databinding.RepositoriesListFragmentBinding
+import com.shante.githubrepositoryviewapp.presentation.repositorieslist.extensions.setDivider
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -36,8 +37,12 @@ class RepositoriesListFragment : Fragment() {
         }
 
         val layoutManager = LinearLayoutManager(context)
-        binding.repositoriesRecyclerView.adapter = repositoryListAdapter
-        binding.repositoriesRecyclerView.layoutManager = layoutManager
+
+        with (binding) {
+            repositoriesRecyclerView.adapter = repositoryListAdapter
+            repositoriesRecyclerView.layoutManager = layoutManager
+            repositoriesRecyclerView.setDivider(R.drawable.recycler_view_divider)
+        }
 
         viewModel.getRepositories()
 
@@ -58,7 +63,8 @@ class RepositoriesListFragment : Fragment() {
     private fun handleAction(action: RepositoriesListViewModel.Action) {
         when (action) {
             is RepositoriesListViewModel.Action.RouteToDetails -> {
-                val direction = RepositoriesListFragmentDirections.toDetailInfoFragment(action.repository)
+                val direction =
+                    RepositoriesListFragmentDirections.toDetailInfoFragment(action.repository)
                 findNavController().navigate(direction)
             }
             is RepositoriesListViewModel.Action.ShowError -> showToast(action.message)
@@ -70,28 +76,31 @@ class RepositoriesListFragment : Fragment() {
         bindStateInfo(state)
     }
 
-    private fun bindViewVisibility(state: RepositoriesListViewModel.State){
-        binding.progressCircularBar.visibility =
-            if (state is RepositoriesListViewModel.State.Loading) View.VISIBLE else View.GONE
-        binding.repositoriesRecyclerView.visibility =
-            if (state is RepositoriesListViewModel.State.Loaded) View.VISIBLE else View.GONE
-
-        binding.stateInfoViewGroup.visibility =
-            if (state is RepositoriesListViewModel.State.Empty ||
-                state is RepositoriesListViewModel.State.Error
-            ) View.VISIBLE else View.GONE
+    private fun bindViewVisibility(state: RepositoriesListViewModel.State) {
+        with(binding) {
+            progressCircularBar.visibility =
+                if (state is RepositoriesListViewModel.State.Loading) View.VISIBLE else View.GONE
+            repositoriesRecyclerView.visibility =
+                if (state is RepositoriesListViewModel.State.Loaded) View.VISIBLE else View.GONE
+            stateInfoViewGroup.visibility =
+                if (state is RepositoriesListViewModel.State.Empty ||
+                    state is RepositoriesListViewModel.State.Error
+                ) View.VISIBLE else View.GONE
+        }
     }
 
     private fun bindStateInfo(state: RepositoriesListViewModel.State) {
-        if (state is RepositoriesListViewModel.State.Error) {
-            binding.stateImage.setImageResource(R.drawable.ic_error)
-            binding.stateTitle.text = getString(R.string.error)
-            binding.stateDescription.text = getString(R.string.something_went_wrong)
-        }
-        if (state is RepositoriesListViewModel.State.Empty) {
-            binding.stateImage.setImageResource(R.drawable.ic_empty)
-            binding.stateTitle.text = getString(R.string.empty)
-            binding.stateDescription.text = getString(R.string.no_repositories)
+        with(binding) {
+            if (state is RepositoriesListViewModel.State.Error) {
+                stateImage.setImageResource(R.drawable.ic_error)
+                stateTitle.text = getString(R.string.error)
+                stateDescription.text = getString(R.string.something_went_wrong)
+            }
+            if (state is RepositoriesListViewModel.State.Empty) {
+                stateImage.setImageResource(R.drawable.ic_empty)
+                stateTitle.text = getString(R.string.empty)
+                stateDescription.text = getString(R.string.no_repositories)
+            }
         }
     }
 
