@@ -15,7 +15,8 @@ data class Repo(
     @SerializedName("description")
     val description: String?,
     @SerializedName("language")
-    val language: String,
+    val language: String?,
     @SerializedName("owner")
     val user: UserInfo
 ) : Parcelable
+

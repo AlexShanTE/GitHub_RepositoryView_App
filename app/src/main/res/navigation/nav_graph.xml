@@ -4,7 +4,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/authFragment">
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.shante.githubrepositoryviewapp.presentation.splash.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/splash_fragment"
+        >
+        <action
+            android:id="@+id/to_authFragment"
+            app:destination="@id/authFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true"
+            />
+    </fragment>
 
     <fragment
         android:id="@+id/authFragment"
@@ -13,7 +27,8 @@
         tools:layout="@layout/auth_fragment">
         <action
             android:id="@+id/to_repositoriesListFragment"
-            app:destination="@id/repositoriesListFragment" />
+            app:destination="@id/repositoriesListFragment"
+            />
     </fragment>
 
     <fragment
@@ -35,5 +50,6 @@
             android:name="repository"
             app:argType="com.shante.githubrepositoryviewapp.domain.models.Repo" />
     </fragment>
+
 
 </navigation>

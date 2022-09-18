@@ -1,9 +1,13 @@
 <resources>
     <string name="app_name">GitHub Repository View App</string>
+
+
+    <!-- auth fragment -->
     <string name="sign_in">SIGN IN</string>
     <string name="token">GitHub token</string>
-
-    <!-- State title -->
+    <string name="personal_access_token">Personal access token</string>
+    <string name="invalid_token">Invalid token</string>
+    <string name="empty_text"> </string>
 
 
     <!-- content description -->
@@ -18,6 +22,7 @@
     <string name="forks"><font color="#FF0707">%1$d </font><font color="#0B132B">forks</font></string>
     <string name="watchers"><font color="#FF0707">%1$d </font><font color="#0B132B">watchers</font></string>
     <string name="license">License</string>
+    <string name="no_readme">No README.md</string>
 
 
 </resources>

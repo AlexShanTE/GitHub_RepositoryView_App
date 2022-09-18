@@ -2,14 +2,17 @@
 <resources>
 
     <!-- paddings -->
-    <dimen name="base_padding">8dp</dimen>
-    <dimen name="addition_padding">20dp</dimen>
+    <dimen name="padding4">4dp</dimen>
+    <dimen name="padding6">6dp</dimen>
+    <dimen name="padding16">16dp</dimen>
+    <dimen name="padding24">24dp</dimen>
     <!-- margins -->
-    <dimen name="base_margin">8dp</dimen>
-    <dimen name="addition_margin">20dp</dimen>
+    <dimen name="margin16">16dp</dimen>
+    <dimen name="margin24">24dp</dimen>
 
     <!-- text sizes -->
-    <dimen name="base_text_size">16sp</dimen>
-    <dimen name="addition_text_size">20sp</dimen>
+    <dimen name="text_size12">12sp</dimen>
+    <dimen name="text_size14">14sp</dimen>
+    <dimen name="text_size16">16sp</dimen>
 
 </resources>

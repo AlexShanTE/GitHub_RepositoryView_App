@@ -1,6 +1,8 @@
 package com.shante.githubrepositoryviewapp.presentation.repositorieslist
 
+import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -8,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.shante.githubrepositoryviewapp.R
 import com.shante.githubrepositoryviewapp.databinding.RepositoryCardBinding
 import com.shante.githubrepositoryviewapp.domain.models.Repo
+import com.shante.githubrepositoryviewapp.presentation.repositorieslist.utils.ColorOfLanguage
 
 class RepositoriesListAdapter(
     private val onClick: (repository: Repo) -> Unit
@@ -41,10 +44,17 @@ class RepositoryCardViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bindRepositoryCard(repository: Repo) {
-        binding.repositoryCard.setOnClickListener { onClick(repository) }
-        binding.repositoryName.text = repository.name
-        binding.repositoryDescription.text = repository.description
-        binding.repositoryLanguage.text = repository.language
+        with(binding) {
+            repositoryCard.setOnClickListener { onClick(repository) }
+            repositoryName.text = repository.name
+            repositoryLanguage.text =  repository.language
+            repositoryDescription.text = repository.description
+            repositoryDescription.visibility =
+                if (repository.description.isNullOrBlank()) View.GONE else View.VISIBLE
+            if (repository.language !== null) repositoryLanguage.setTextColor(
+                Color.parseColor(ColorOfLanguage.get(repository.language))
+            )
+        }
     }
 
     companion object {
