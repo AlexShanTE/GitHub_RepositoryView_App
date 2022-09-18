@@ -30,10 +30,10 @@
         android:id="@+id/detailInfoFragment"
         android:name="com.shante.githubrepositoryviewapp.presentation.detailinfo.DetailInfoFragment"
         android:label="DetailInfoFragment"
-        tools:layout="@layout/repository_details">
+        tools:layout="@layout/detail_info">
         <argument
-            android:name="repositoryId"
-            app:argType="integer" />
+            android:name="repository"
+            app:argType="com.shante.githubrepositoryviewapp.domain.models.Repo" />
     </fragment>
 
 </navigation>

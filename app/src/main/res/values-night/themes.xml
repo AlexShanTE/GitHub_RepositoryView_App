@@ -26,5 +26,10 @@
         <item name="android:minHeight">48dp</item>
     </style>
 
+    <style name="Widget.AppTheme.IconAndText" parent="Widget.MaterialComponents.Button.TextButton.Icon">
+        <item name="iconTint">?attr/colorControlNormal</item>
+        <item name="android:textColor">?attr/colorControlNormal</item>
+    </style>
+
 
 </resources>

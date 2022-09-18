@@ -5,6 +5,7 @@ import android.content.Context
 import android.util.Log
 import androidx.core.content.edit
 import com.shante.githubrepositoryviewapp.domain.models.KeyValueStorage
+import com.shante.githubrepositoryviewapp.domain.models.ReadMe
 import com.shante.githubrepositoryviewapp.domain.models.Repo
 import com.shante.githubrepositoryviewapp.domain.models.RepoDetails
 import com.shante.githubrepositoryviewapp.domain.models.UserInfo
@@ -23,7 +24,6 @@ class AppRepositoryImpl @Inject constructor(
 
     override suspend fun getRepositories(): List<Repo> {
         val token: String? = getTokenFromSharedPreferences()
-        Log.d("TAG", "Token from app repository is ${token.toString()}")
         return if (token.isNullOrBlank()) gitApi.getRepositories("")
         else gitApi.getRepositories(TOKEN_TYPE + token)
     }
@@ -36,7 +36,7 @@ class AppRepositoryImpl @Inject constructor(
         ownerName: String,
         repositoryName: String,
         branchName: String
-    ): String {
+    ): ReadMe {
         return gitApi.getRepositoryReadme(ownerName, repositoryName, branchName)
     }
 
@@ -45,7 +45,6 @@ class AppRepositoryImpl @Inject constructor(
     }
 
     override fun saveTokenInSharedPreferences(token: String) {
-        Log.d("TAG", "Incoming token in save in shared is $token")
         prefs.edit {
             val keyValueStorage = KeyValueStorage()
             keyValueStorage.authToken = token

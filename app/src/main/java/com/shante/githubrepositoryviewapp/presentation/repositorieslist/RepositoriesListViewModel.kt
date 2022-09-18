@@ -25,12 +25,11 @@ class RepositoriesListViewModel @Inject constructor(
     private val _actions: Channel<Action> = Channel(Channel.BUFFERED)
     val actions: Flow<Action> = _actions.receiveAsFlow()
 
-    fun getRepositories(): List<Repo> {
-        var repoList: List<Repo> = emptyList()
+    fun getRepositories() {
         _state.value = State.Loading
         viewModelScope.launch {
             try {
-                repoList = repository.getRepositories()
+                val repoList = repository.getRepositories()
                 _state.value = State.Loaded(repoList)
                 if (repoList.isEmpty()) {
                     _state.value = State.Empty
@@ -41,13 +40,12 @@ class RepositoriesListViewModel @Inject constructor(
                 _actions.send(Action.ShowError(message))
             }
         }
-        return repoList
     }
 
 
     fun onRepositoryCardClicked(repository: Repo) {
         viewModelScope.launch {
-            _actions.send(Action.RouteToDetails(repository.id))
+            _actions.send(Action.RouteToDetails(repository))
         }
     }
 
@@ -60,7 +58,7 @@ class RepositoriesListViewModel @Inject constructor(
 
     sealed interface Action {
         data class ShowError(val message: String) : Action
-        data class RouteToDetails(val repositoryId: Int) : Action
+        data class RouteToDetails(val repository:Repo) : Action  //todo was val repositoryId: Int
     }
 
 
