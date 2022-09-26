@@ -34,7 +34,7 @@
         android:visibility="visible"
         />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/tokenEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -44,6 +44,8 @@
         android:inputType="text"
         android:textColor="@color/white"
         android:textColorHint="@color/lite_gray"
+        android:backgroundTint="@color/secondary"
+        android:textCursorDrawable="@drawable/edit_text_cursor"
         android:textSize="@dimen/text_size16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

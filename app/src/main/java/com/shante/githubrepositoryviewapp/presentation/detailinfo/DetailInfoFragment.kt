@@ -2,7 +2,6 @@ package com.shante.githubrepositoryviewapp.presentation.detailinfo
 
 import android.os.Bundle
 import android.text.Spanned
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,8 +18,7 @@ class DetailInfoFragment : Fragment() {
 
     private val viewModel: RepositoryInfoViewModel by viewModels()
     private val args by navArgs<DetailInfoFragmentArgs>()
-    private lateinit var _binding: DetailInfoBinding
-    private val binding get() = _binding
+    private lateinit var binding: DetailInfoBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,7 +26,7 @@ class DetailInfoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = DetailInfoBinding.inflate(inflater, container, false)
+        binding = DetailInfoBinding.inflate(inflater, container, false)
 
         val repoOwnerName = args.repository.user.name
         val repoName = args.repository.name
@@ -61,6 +59,9 @@ class DetailInfoFragment : Fragment() {
         with(binding) {
             repositoryDetailsProgressBar.visibility =
                 if (state is RepositoryInfoViewModel.State.Loading) View.VISIBLE else View.GONE
+            detailsGroup.visibility =
+                if (state is RepositoryInfoViewModel.State.Loading) View.GONE else View.VISIBLE
+
         }
     }
 
@@ -80,6 +81,8 @@ class DetailInfoFragment : Fragment() {
         with(binding) {
             repositoryDetailsProgressBar.visibility =
                 if (state is RepositoryInfoViewModel.ReadmeState.Loading) View.VISIBLE else View.GONE
+            readMe.visibility =
+                if (state is RepositoryInfoViewModel.ReadmeState.Loading) View.GONE else View.VISIBLE
         }
     }
 

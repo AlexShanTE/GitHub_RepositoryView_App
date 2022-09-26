@@ -20,8 +20,7 @@ import kotlinx.coroutines.launch
 class AuthFragment : Fragment() {
 
     private val viewModel: AuthViewModel by viewModels()
-    private lateinit var _binding: AuthFragmentBinding
-    private val binding get() = _binding
+    private lateinit var binding: AuthFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +28,7 @@ class AuthFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = AuthFragmentBinding.inflate(inflater, container, false)
+        binding = AuthFragmentBinding.inflate(inflater, container, false)
 
         binding.signInButton.setOnClickListener {
             val token = binding.tokenEditText.text.toString()

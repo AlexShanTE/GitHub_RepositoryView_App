@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">GitHub Repository View App</string>
+    <string name="log_out">Logout</string>
 
 
     <!-- auth fragment -->
@@ -18,9 +19,9 @@
     <string name="empty">Empty</string>
     <string name="no_repositories">No repositories at the moment</string>
 
-    <string name="stars"><font color="#FF0707">%1$d </font><font color="#FF0707">stars</font></string>
-    <string name="forks"><font color="#FF0707">%1$d </font><font color="#0B132B">forks</font></string>
-    <string name="watchers"><font color="#FF0707">%1$d </font><font color="#0B132B">watchers</font></string>
+    <string name="stars">%1$d stars</string>
+    <string name="forks">%1$d forks</string>
+    <string name="watchers">%1$d watchers</string>
     <string name="license">License</string>
     <string name="no_readme">No README.md</string>
 
