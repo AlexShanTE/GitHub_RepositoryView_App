@@ -1,5 +1,7 @@
 package com.shante.githubrepositoryviewapp.presentation.auth
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.shante.githubrepositoryviewapp.R
 import com.shante.githubrepositoryviewapp.databinding.AuthFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -17,6 +20,7 @@ import kotlinx.coroutines.launch
 class AuthFragment : Fragment() {
 
     private val viewModel: AuthViewModel by viewModels()
+    private lateinit var binding: AuthFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,7 +28,7 @@ class AuthFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        val binding: AuthFragmentBinding = AuthFragmentBinding.inflate(inflater, container, false)
+        binding = AuthFragmentBinding.inflate(inflater, container, false)
 
         binding.signInButton.setOnClickListener {
             val token = binding.tokenEditText.text.toString()
@@ -32,21 +36,12 @@ class AuthFragment : Fragment() {
             viewModel.onSignButtonPressed()
         }
 
-        binding.clearEditTextButton.setOnClickListener {
-            binding.tokenEditText.text.clear()
-        }
-
         lifecycleScope.launch {
             viewModel.actions.collect { handleAction(it) }
         }
 
         viewModel.state.observe(viewLifecycleOwner) { state ->
-            //todo ui things depending of state
-            when (state) {
-                is AuthViewModel.State.Loading -> binding.signInButton.text = "Loading"
-                is AuthViewModel.State.InvalidInput -> binding.signInButton.text = "Invalid Input"
-                is AuthViewModel.State.Idle -> binding.signInButton.text = "IDle"
-            }
+            bindToViewModel(state)
         }
 
         return binding.root
@@ -59,6 +54,32 @@ class AuthFragment : Fragment() {
                 findNavController().navigate(direction)
             }
             is AuthViewModel.Action.ShowError -> showToast(action.message)
+        }
+    }
+
+    private fun bindToViewModel(state: AuthViewModel.State) {
+        bindViewVisibility(state)
+        bindStateInfo(state)
+    }
+
+    private fun bindViewVisibility(state: AuthViewModel.State) {
+        with(binding) {
+            invalidToken.visibility =
+                if (state is AuthViewModel.State.InvalidInput) View.VISIBLE else View.GONE
+            binding.progressCircularBar.visibility =
+                if (state is AuthViewModel.State.Loading) View.VISIBLE else View.GONE
+        }
+    }
+
+    @SuppressLint("ResourceType")
+    private fun bindStateInfo(state: AuthViewModel.State) {
+        with(binding) {
+            signInButton.setText(if (state is AuthViewModel.State.Loading) R.string.empty_text else R.string.sign_in)
+            tokenLabel.setTextColor(
+                if (state is AuthViewModel.State.InvalidInput)
+                    Color.parseColor(getString(R.color.error))
+                else Color.parseColor(getString(R.color.secondary))
+            )
         }
     }
 

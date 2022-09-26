@@ -5,6 +5,26 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+
+    <!--main palette-->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="accent">#438440</color>
+    <color name="bg">#0D1117</color>
+    <color name="status_bar">#161B22</color>
+    <color name="lite_gray">#A9A9A9</color>
+    <color name="gray">#21262D</color>
+    <color name="secondary">#58A6FF</color>
+    <color name="error">#B00020</color>
+    <!--details palette-->
+    <color name="star_color">#FAD876</color>
+    <color name="fork_color">#6ED370</color>
+    <color name="watchers_color">#9CFFF9</color>
+    <!--language colors-->
+    <color name="purple">#A37AEE</color>
+    <color name="yellow">#F4E264</color>
+
+
+
+
 </resources>

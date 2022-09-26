@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/repository_card"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/bg"
+    android:paddingVertical="@dimen/padding16"
+    >
 
     <TextView
         android:id="@+id/repository_name"
@@ -12,25 +15,36 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textSize="@dimen/addition_text_size"
+        android:paddingHorizontal="@dimen/padding16"
+        android:textColor="@color/secondary"
+        android:textSize="@dimen/text_size16"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/repository_language"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Name of repository" />
 
     <TextView
         android:id="@+id/repository_description"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:textSize="@dimen/base_text_size"
+        android:paddingHorizontal="@dimen/padding16"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size14"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/repository_name"
-        tools:text="description" />
+        tools:text="@tools:sample/lorem/random"
+        tools:maxLines="1"
+        android:visibility="visible"
+        />
 
     <TextView
         android:id="@+id/repository_language"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/base_text_size"
+        android:paddingHorizontal="@dimen/padding16"
+        android:textColor="@color/purple"
+        android:textSize="@dimen/text_size12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="language" />

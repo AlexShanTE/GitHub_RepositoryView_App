@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:paddingHorizontal="@dimen/padding16"
+    android:paddingVertical="@dimen/padding24">
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/details_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="stars,forks,watchers,license,license_value,repository_link" />
+
+    <ProgressBar
+        android:id="@+id/repository_details_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/repository_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoLink="web"
+        android:drawablePadding="@dimen/padding16"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:textSize="@dimen/text_size16"
+        app:drawableStartCompat="@drawable/ic_link"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="https://github.com/AlexShanTE/GitHub_RepositoryView_App" />
+
+    <TextView
+        android:id="@+id/license"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="@dimen/padding6"
+        android:paddingVertical="28dp"
+        android:text="@string/license"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size16"
+        app:drawableStartCompat="@drawable/ic_license"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/repository_link"
+        app:drawableTint="@color/white" />
+
+    <TextView
+        android:id="@+id/license_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="28dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/repository_link"
+        tools:text="Apache-2.0" />
+
+    <TextView
+        android:id="@+id/stars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="@dimen/padding6"
+        android:text="@string/stars"
+        android:textColor="@color/star_color"
+        android:textSize="@dimen/text_size16"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:drawableStartCompat="@drawable/ic_star"
+        app:layout_constraintEnd_toStartOf="@id/forks"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/license" />
+
+    <TextView
+        android:id="@+id/forks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="@dimen/padding6"
+        android:text="@string/forks"
+        android:textColor="@color/fork_color"
+        android:textSize="@dimen/text_size16"
+        app:drawableStartCompat="@drawable/ic_fork"
+        app:layout_constraintEnd_toStartOf="@id/watchers"
+        app:layout_constraintStart_toEndOf="@id/stars"
+        app:layout_constraintTop_toBottomOf="@id/license" />
+
+    <TextView
+        android:id="@+id/watchers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="@dimen/padding6"
+        android:text="@string/forks"
+        android:textColor="@color/watchers_color"
+        android:textSize="@dimen/text_size16"
+        app:drawableStartCompat="@drawable/ic_watcher"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/forks"
+        app:layout_constraintTop_toBottomOf="@id/license" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingTop="26dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/stars">
+
+        <TextView
+            android:id="@+id/readMe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            tools:lines="10"
+            tools:text="@tools:sample/lorem/random"
+            tools:visibility="visible" />
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,12 @@
 package com.shante.githubrepositoryviewapp.domain.models
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 
 @Serializable
+@Parcelize
 data class Repo(
     @SerializedName("id")
     val id: Int,
@@ -12,5 +15,8 @@ data class Repo(
     @SerializedName("description")
     val description: String?,
     @SerializedName("language")
-    val language: String,
-)
+    val language: String?,
+    @SerializedName("owner")
+    val user: UserInfo
+) : Parcelable
+
