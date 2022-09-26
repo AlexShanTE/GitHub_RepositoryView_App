@@ -73,6 +73,7 @@
         android:text="@string/stars"
         android:textColor="@color/star_color"
         android:textSize="@dimen/text_size16"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:drawableStartCompat="@drawable/ic_star"
         app:layout_constraintEnd_toStartOf="@id/forks"
         app:layout_constraintStart_toStartOf="parent"

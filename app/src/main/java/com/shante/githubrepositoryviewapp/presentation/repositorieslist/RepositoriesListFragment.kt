@@ -21,8 +21,7 @@ import kotlinx.coroutines.launch
 class RepositoriesListFragment : Fragment() {
 
     private val viewModel: RepositoriesListViewModel by viewModels()
-    private lateinit var _binding: RepositoriesListFragmentBinding
-    private val binding get() = _binding
+    private lateinit var binding: RepositoriesListFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +29,7 @@ class RepositoriesListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = RepositoriesListFragmentBinding.inflate(inflater, container, false)
+        binding = RepositoriesListFragmentBinding.inflate(inflater, container, false)
 
         val repositoryListAdapter = RepositoriesListAdapter { repository ->
             viewModel.onRepositoryCardClicked(repository)
@@ -38,7 +37,7 @@ class RepositoriesListFragment : Fragment() {
 
         val layoutManager = LinearLayoutManager(context)
 
-        with (binding) {
+        with(binding) {
             repositoriesRecyclerView.adapter = repositoryListAdapter
             repositoriesRecyclerView.layoutManager = layoutManager
             repositoriesRecyclerView.setDivider(R.drawable.recycler_view_divider)
