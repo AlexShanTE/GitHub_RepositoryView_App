@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.shante.githubrepositoryviewapp.domain.models.Repo
 import com.shante.githubrepositoryviewapp.domain.repository.AppRepository
-import com.shante.githubrepositoryviewapp.presentation.auth.AuthViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -42,11 +41,14 @@ class RepositoriesListViewModel @Inject constructor(
         }
     }
 
-
     fun onRepositoryCardClicked(repository: Repo) {
         viewModelScope.launch {
             _actions.send(Action.RouteToDetails(repository))
         }
+    }
+
+    fun onRefreshButtonClicked() {
+        getRepositories()
     }
 
     sealed interface State {
@@ -58,7 +60,7 @@ class RepositoriesListViewModel @Inject constructor(
 
     sealed interface Action {
         data class ShowError(val message: String) : Action
-        data class RouteToDetails(val repository:Repo) : Action  //todo was val repositoryId: Int
+        data class RouteToDetails(val repository: Repo) : Action  //todo was val repositoryId: Int
     }
 
 

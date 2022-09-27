@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
@@ -10,14 +9,12 @@
         android:id="@+id/splashFragment"
         android:name="com.shante.githubrepositoryviewapp.presentation.splash.SplashFragment"
         android:label="SplashFragment"
-        tools:layout="@layout/splash_fragment"
-        >
+        tools:layout="@layout/splash_fragment">
         <action
             android:id="@+id/to_authFragment"
             app:destination="@id/authFragment"
             app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true"
-            />
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -29,8 +26,7 @@
             android:id="@+id/to_repositoriesListFragment"
             app:destination="@id/repositoriesListFragment"
             app:popUpTo="@id/authFragment"
-            app:popUpToInclusive="true"
-            />
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment

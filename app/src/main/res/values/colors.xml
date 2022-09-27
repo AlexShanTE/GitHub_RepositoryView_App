@@ -20,11 +20,6 @@
     <color name="star_color">#FAD876</color>
     <color name="fork_color">#6ED370</color>
     <color name="watchers_color">#9CFFF9</color>
-    <!--language colors-->
-    <color name="purple">#A37AEE</color>
-    <color name="yellow">#F4E264</color>
-
-
 
 
 </resources>

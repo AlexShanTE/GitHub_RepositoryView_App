@@ -22,7 +22,7 @@ class SplashFragment : Fragment() {
     ) = SplashFragmentBinding.inflate(layoutInflater, container, false).also {
 
         lifecycleScope.launch {
-            delay(2000)
+            delay(1500)
             val direction = SplashFragmentDirections.toAuthFragment()
             findNavController().navigate(direction)
         }

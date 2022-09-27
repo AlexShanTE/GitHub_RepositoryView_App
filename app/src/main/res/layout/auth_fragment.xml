@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -29,22 +28,21 @@
         android:text="@string/personal_access_token"
         android:textColor="@color/secondary"
         android:textSize="@dimen/text_size12"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gitHubLogo"
         android:visibility="visible"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gitHubLogo" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/tokenEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:autofillHints="token"
+        android:backgroundTint="@color/secondary"
         android:ellipsize="end"
         android:hint="@string/token"
         android:inputType="text"
         android:textColor="@color/white"
         android:textColorHint="@color/lite_gray"
-        android:backgroundTint="@color/secondary"
         android:textCursorDrawable="@drawable/edit_text_cursor"
         android:textSize="@dimen/text_size16"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,11 +56,10 @@
         android:text="@string/invalid_token"
         android:textColor="@color/error"
         android:textSize="@dimen/text_size12"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tokenEditText"
-        android:visibility="gone"
-        tools:visibility="visible"
-        />
+        tools:visibility="visible" />
 
 
     <com.google.android.material.button.MaterialButton
@@ -81,16 +78,15 @@
         android:id="@+id/progress_circular_bar"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:indeterminate="true"
         android:elevation="8dp"
+        android:indeterminate="true"
         android:indeterminateTint="@color/white"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/signIn_Button"
         app:layout_constraintEnd_toEndOf="@id/signIn_Button"
         app:layout_constraintStart_toStartOf="@id/signIn_Button"
         app:layout_constraintTop_toTopOf="@id/signIn_Button"
-        android:visibility="gone"
-        tools:visibility="visible"
-        />
+        tools:visibility="visible" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

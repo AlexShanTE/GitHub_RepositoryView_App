@@ -1,7 +1,6 @@
 package com.shante.githubrepositoryviewapp.presentation.detailinfo
 
 import android.util.Base64
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,14 +24,15 @@ class RepositoryInfoViewModel @Inject constructor(
 
     fun getRepositoryInfo(repositoryId: Int) {
         _state.value = State.Loading
-        try {
-            viewModelScope.launch {
+        viewModelScope.launch {
+            try {
                 val repositoryDetails = repository.getRepository(repositoryId.toString())
                 _state.value = State.Loaded(repositoryDetails)
+
+            } catch (error: Throwable) {
+                val message = error.message ?: error.toString()
+                _state.value = State.Error(message)
             }
-        } catch (error: Throwable) {
-            val message = error.message ?: error.toString()
-            _state.value = State.Error(message)
         }
     }
 
@@ -44,13 +44,23 @@ class RepositoryInfoViewModel @Inject constructor(
                     repository.getRepositoryReadme(ownerName, repositoryName, branchName)
                 val decodedReadMe = Base64.decode(encodedReadMe.content, Base64.DEFAULT)
                 val contentReadMe = String(decodedReadMe)
-                if (contentReadMe.isBlank()) _readmeState.value = ReadmeState.Empty
-                else _readmeState.value = ReadmeState.Loaded(contentReadMe)
+                _readmeState.value = if (contentReadMe.isBlank())
+                    ReadmeState.Empty else ReadmeState.Loaded(contentReadMe)
             } catch (error: Throwable) {
                 val message = error.message ?: error.toString()
                 _readmeState.value = ReadmeState.Error(message)
             }
         }
+    }
+
+    fun onRefreshButtonClicked(
+        repositoryId: Int,
+        ownerName: String,
+        repositoryName: String,
+        branchName: String
+    ) {
+        getRepositoryInfo(repositoryId)
+        getReadMe(ownerName, repositoryName, branchName)
     }
 
     sealed interface State {

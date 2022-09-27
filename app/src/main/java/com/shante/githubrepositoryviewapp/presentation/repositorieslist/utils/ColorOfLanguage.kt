@@ -1,8 +1,8 @@
 package com.shante.githubrepositoryviewapp.presentation.repositorieslist.utils
 
 object ColorOfLanguage {
-    fun get(language: String) : String {
-        val colors:Map<String,String> = mapOf(
+    fun get(language: String): String {
+        val colors: Map<String, String> = mapOf(
             "ABAP" to "#E8274B",
             "ActionScript" to "#882B0F",
             "Ada" to "#02f88c",
@@ -201,7 +201,7 @@ object ColorOfLanguage {
             "XC" to "#99DA07",
             "XQuery" to "#5232e7",
             "Zephir" to "#118f9e",
-            )
+        )
         val color = colors[language]
         return if (color !== null) color.toString() else "#FFFFFFFF"
     }
