@@ -47,7 +47,7 @@ class RepositoryCardViewHolder(
         with(binding) {
             repositoryCard.setOnClickListener { onClick(repository) }
             repositoryName.text = repository.name
-            repositoryLanguage.text =  repository.language
+            repositoryLanguage.text = repository.language
             repositoryDescription.text = repository.description
             repositoryDescription.visibility =
                 if (repository.description.isNullOrBlank()) View.GONE else View.VISIBLE

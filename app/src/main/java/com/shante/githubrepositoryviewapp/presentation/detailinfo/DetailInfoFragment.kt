@@ -31,8 +31,8 @@ class DetailInfoFragment : Fragment() {
         val repoOwnerName = args.repository.user.name
         val repoName = args.repository.name
 
-        viewModel.getReadMe(repoOwnerName, repoName, "master")
         viewModel.getRepositoryInfo(args.repository.id)
+        viewModel.getReadMe(repoOwnerName, repoName, "master")
 
         viewModel.state.observe(viewLifecycleOwner) { state ->
             bindDetailsToViewModel(state)
@@ -42,61 +42,67 @@ class DetailInfoFragment : Fragment() {
             bindReadMeToViewModel(readMeState)
         }
 
+        binding.refreshButton.setOnClickListener {
+            viewModel.onRefreshButtonClicked(args.repository.id, repoOwnerName, repoName, "master")
+        }
+
         return binding.root
     }
 
     private fun bindDetailsToViewModel(state: RepositoryInfoViewModel.State) {
-        bindDetailsViewVisibility(state)
+        bindViewVisibility(state)
         bindRepoDetails(state)
     }
 
-    private fun bindReadMeToViewModel(state: RepositoryInfoViewModel.ReadmeState) {
-        bindReadMeViewVisibility(state)
-        bindReadMe(state)
+    private fun bindReadMeToViewModel(readmeState: RepositoryInfoViewModel.ReadmeState) {
+        bindReadMe(readmeState)
     }
 
-    private fun bindDetailsViewVisibility(state: RepositoryInfoViewModel.State) {
+    private fun bindViewVisibility(state: RepositoryInfoViewModel.State) {
         with(binding) {
             repositoryDetailsProgressBar.visibility =
                 if (state is RepositoryInfoViewModel.State.Loading) View.VISIBLE else View.GONE
             detailsGroup.visibility =
-                if (state is RepositoryInfoViewModel.State.Loading) View.GONE else View.VISIBLE
-
+                if (state is RepositoryInfoViewModel.State.Loading ||
+                    state is RepositoryInfoViewModel.State.Error
+                ) View.GONE else View.VISIBLE
+            statusInfo.statusInfoViewGroup.visibility =
+                if (state is RepositoryInfoViewModel.State.Error) View.VISIBLE else View.GONE
+            readMe.visibility =
+                if (state is RepositoryInfoViewModel.State.Loaded) View.VISIBLE else View.GONE
+            refreshButton.visibility =
+                if (state is RepositoryInfoViewModel.State.Error) View.VISIBLE else View.GONE
         }
     }
 
     private fun bindRepoDetails(state: RepositoryInfoViewModel.State) {
-        if (state is RepositoryInfoViewModel.State.Loaded) {
-            with(binding) {
+        with(binding) {
+            if (state is RepositoryInfoViewModel.State.Loaded) {
                 repositoryLink.text = state.githubRepoDetails.html_url
                 licenseValue.text = state.githubRepoDetails.license?.spdx_id
                 stars.text = getString(R.string.stars, state.githubRepoDetails.stars)
                 forks.text = getString(R.string.forks, state.githubRepoDetails.forks)
                 watchers.text = getString(R.string.watchers, state.githubRepoDetails.watchers)
             }
+            if (state is RepositoryInfoViewModel.State.Error) {
+                statusInfo.statusImage.setImageResource(R.drawable.ic_error)
+                statusInfo.statusTitle.text = getString(R.string.error)
+                statusInfo.statusDescription.text = getString(R.string.something_went_wrong)
+            }
         }
     }
 
-    private fun bindReadMeViewVisibility(state: RepositoryInfoViewModel.ReadmeState) {
+    private fun bindReadMe(readmeState: RepositoryInfoViewModel.ReadmeState) {
         with(binding) {
-            repositoryDetailsProgressBar.visibility =
-                if (state is RepositoryInfoViewModel.ReadmeState.Loading) View.VISIBLE else View.GONE
-            readMe.visibility =
-                if (state is RepositoryInfoViewModel.ReadmeState.Loading) View.GONE else View.VISIBLE
-        }
-    }
-
-    private fun bindReadMe(state: RepositoryInfoViewModel.ReadmeState) {
-        with(binding) {
-            if (state is RepositoryInfoViewModel.ReadmeState.Loaded) {
+            if (readmeState is RepositoryInfoViewModel.ReadmeState.Loaded) {
                 val markwon: Markwon = Markwon.create(requireContext())
-                val node: org.commonmark.node.Node = markwon.parse(state.markdown)
+                val node: org.commonmark.node.Node = markwon.parse(readmeState.markdown)
                 val markdown: Spanned = markwon.render(node)
                 markwon.setParsedMarkdown(readMe, markdown)
                 return
             }
-            if (state is RepositoryInfoViewModel.ReadmeState.Empty ||
-                state is RepositoryInfoViewModel.ReadmeState.Error
+            if (readmeState is RepositoryInfoViewModel.ReadmeState.Empty ||
+                readmeState is RepositoryInfoViewModel.ReadmeState.Error
             ) {
                 readMe.setText(R.string.no_readme)
             }

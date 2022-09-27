@@ -1,7 +1,8 @@
 <resources>
+
     <string name="app_name">GitHub Repository View App</string>
     <string name="log_out">Logout</string>
-
+    <string name="refresh">REFRESH</string>
 
     <!-- auth fragment -->
     <string name="sign_in">SIGN IN</string>
@@ -9,21 +10,26 @@
     <string name="personal_access_token">Personal access token</string>
     <string name="invalid_token">Invalid token</string>
     <string name="empty_text"> </string>
-
-
-    <!-- content description -->
-    <string name="github_logo">GitHub Logo</string>
-    <string name="status_image">Status image</string>
-    <string name="error">Error</string>
-    <string name="something_went_wrong">Something went wrong</string>
-    <string name="empty">Empty</string>
+    <!-- repositories list fragment -->
     <string name="no_repositories">No repositories at the moment</string>
-
+    <string name="empty">Empty</string>
+    <!-- details fragment -->
     <string name="stars">%1$d stars</string>
     <string name="forks">%1$d forks</string>
     <string name="watchers">%1$d watchers</string>
     <string name="license">License</string>
     <string name="no_readme">No README.md</string>
+
+    <!-- errors state  -->
+    <string name="error">Error</string>
+    <string name="something_went_wrong">Something went wrong</string>
+
+    <!-- content description -->
+    <string name="github_logo">GitHub Logo</string>
+    <string name="status_image">Status image</string>
+
+
+
 
 
 </resources>

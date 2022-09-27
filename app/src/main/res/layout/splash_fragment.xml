@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
-    >
+    android:background="@color/bg">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/ic_git_hub_logo"
         android:layout_gravity="center"
         android:contentDescription="@string/github_logo"
-        />
+        android:src="@drawable/ic_git_hub_logo" />
 
 </FrameLayout>

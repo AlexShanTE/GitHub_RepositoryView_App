@@ -21,7 +21,9 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
+
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         val navController = navHostFragment.navController
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
@@ -36,7 +38,6 @@ class MainActivity : AppCompatActivity() {
                     ) else null
             }
         }
-
 
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
@@ -53,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         binding.topAppBar.setNavigationOnClickListener {
             navController.popBackStack()
         }
+
 
         setContentView(binding.root)
     }

@@ -56,6 +56,10 @@ class RepositoriesListFragment : Fragment() {
             viewModel.actions.collect { handleAction(it) }
         }
 
+        binding.refreshButton.setOnClickListener {
+            viewModel.onRefreshButtonClicked()
+        }
+
         return binding.root
     }
 
@@ -81,7 +85,11 @@ class RepositoriesListFragment : Fragment() {
                 if (state is RepositoriesListViewModel.State.Loading) View.VISIBLE else View.GONE
             repositoriesRecyclerView.visibility =
                 if (state is RepositoriesListViewModel.State.Loaded) View.VISIBLE else View.GONE
-            stateInfoViewGroup.visibility =
+            statusInfo.statusInfoViewGroup.visibility =
+                if (state is RepositoriesListViewModel.State.Empty ||
+                    state is RepositoriesListViewModel.State.Error
+                ) View.VISIBLE else View.GONE
+            refreshButton.visibility =
                 if (state is RepositoriesListViewModel.State.Empty ||
                     state is RepositoriesListViewModel.State.Error
                 ) View.VISIBLE else View.GONE
@@ -91,14 +99,14 @@ class RepositoriesListFragment : Fragment() {
     private fun bindStateInfo(state: RepositoriesListViewModel.State) {
         with(binding) {
             if (state is RepositoriesListViewModel.State.Error) {
-                stateImage.setImageResource(R.drawable.ic_error)
-                stateTitle.text = getString(R.string.error)
-                stateDescription.text = getString(R.string.something_went_wrong)
+                statusInfo.statusImage.setImageResource(R.drawable.ic_error)
+                statusInfo.statusTitle.text = getString(R.string.error)
+                statusInfo.statusDescription.text = getString(R.string.something_went_wrong)
             }
             if (state is RepositoriesListViewModel.State.Empty) {
-                stateImage.setImageResource(R.drawable.ic_empty)
-                stateTitle.text = getString(R.string.empty)
-                stateDescription.text = getString(R.string.no_repositories)
+                statusInfo.statusImage.setImageResource(R.drawable.ic_empty)
+                statusInfo.statusTitle.text = getString(R.string.empty)
+                statusInfo.statusDescription.text = getString(R.string.no_repositories)
             }
         }
     }
